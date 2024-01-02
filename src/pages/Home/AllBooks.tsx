@@ -1,12 +1,11 @@
-import AllBooksCard from "../../components/AllBooksCard"
+import AllBooksCard from '../../components/AllBooksCard';
 
-
-function AllBooks() {
+function AllBooks({ query }: any) {
   return (
     <div>
-        <AllBooksCard></AllBooksCard>
+      <AllBooksCard query={query}></AllBooksCard>
     </div>
-  )
+  );
 }
 
-export default AllBooks
+export default AllBooks;

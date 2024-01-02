@@ -3,12 +3,14 @@ import { api } from '../apiSlice';
 const bookApi = api.injectEndpoints({
   endpoints: builder => ({
     getBooks: builder.query({
-      query: () => '/api/v1/book',
+      query: query => `/api/v1/book?searchTerm=${query}`,
     }),
+    // getSearchBooks: builder.query({
+    //   query: query => `/api/v1/book?searchTerm=${query}`,
+    // }),
     singleBook: builder.query({
       query: id => `/api/v1/book/${id}`,
     }),
-
     deleteBook: builder.mutation({
       query: id => ({
         url: `/api/v1/book/${id}`,
@@ -25,5 +27,9 @@ const bookApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetBooksQuery, useSingleBookQuery, useDeleteBookMutation } =
-  bookApi;
+export const {
+  useGetBooksQuery,
+  useSingleBookQuery,
+  useDeleteBookMutation,
+  // useGetSearchBooksQuery,
+} = bookApi;

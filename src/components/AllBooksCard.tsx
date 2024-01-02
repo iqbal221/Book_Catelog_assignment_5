@@ -1,25 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useGetBooksQuery } from '../redux/features/book/bookApi';
 import Loading from './Loading';
 import Bookdetailed from '../pages/Books/BookDetailed';
 
-const AllBooksCard = () => {
-  const { data, isLoading } = useGetBooksQuery(undefined);
+const AllBooksCard = ({ query }: any) => {
+  const { data, isLoading } = useGetBooksQuery(query);
 
-  console.log(data);
+  console.log(query);
 
   return (
     <>
-      <section className="pt-20 lg:pt-[60px] pb-10 lg:pb-20 h-full bg-[#F3F4F6] lg:px-28">
-        <h1 className="text-5xl text-primary font-bold text-center headline lg:pb-10">
-          Books Catelog
-        </h1>
-        <div className="container grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12 ">
+      <section className="pt-10 lg:pt-[60px] pb-10 lg:pb-20 h-full bg-[#F3F4F6] lg:px-10">
+        <div className="container grid sm:grid-cols-2 lg:grid-cols-3 gap-8  ">
           {isLoading ? (
             <Loading></Loading>
           ) : (
-            data?.data?.map((book: any) => {
+            data?.data?.data?.map((book: any) => {
               return (
                 <SingleCard
                   key={book._id}
